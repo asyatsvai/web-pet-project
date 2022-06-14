@@ -1,19 +1,33 @@
 package aatsvaeva.webpetproject.service;
 
-import aatsvaeva.webpetproject.model.User;
+import aatsvaeva.webpetproject.mapper.UserMapper;
 import aatsvaeva.webpetproject.repository.UserRepository;
+import aatsvaeva.webpetproject.response.GetUsersResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserMapper userMapper;
 
-    public List<User> getUsers() {
-        return userRepository.getUsers();
+    @Value("${settings.operation.get-users.default-limit}")
+    private Integer defaultLimit;
+
+    public GetUsersResponse getUsers(@Nullable String cursor, @Nullable Integer limit) {
+        var preparedLimit = limit == null ? defaultLimit : limit;
+        var users = userRepository.getUsers(cursor, preparedLimit);
+        var hasNext = users.size() > preparedLimit;
+        var nextCursor = hasNext ? users.get(preparedLimit - 1).getPosition().toString() : null;
+        var items = userMapper.mapItems(users.subList(0, preparedLimit));
+        return new GetUsersResponse(hasNext, nextCursor, items);
+    }
+
+    public Integer getUserMinAgeByDepartment(String department) {
+        return userRepository.getMinUserAgeByDepartment(department);
     }
 }

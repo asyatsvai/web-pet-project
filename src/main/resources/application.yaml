@@ -8,3 +8,8 @@ spring:
 server:
   servlet:
     context-path: /api/v1
+
+settings:
+  operation:
+    get-users:
+      default-limit: 2
