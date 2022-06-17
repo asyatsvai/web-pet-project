@@ -1,4 +1,4 @@
-package service;
+package aatsvaeva.webpetproject.rowmapper.service;
 
 import aatsvaeva.webpetproject.dto.UserDto;
 import aatsvaeva.webpetproject.mapper.UserMapper;
@@ -9,7 +9,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
@@ -30,7 +29,6 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = UserService.class)
-@EnableConfigurationProperties
 @TestPropertySource(properties = {
         "settings.operation.get-users.default-limit=2"
 })

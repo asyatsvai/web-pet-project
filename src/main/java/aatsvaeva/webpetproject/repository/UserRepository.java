@@ -3,7 +3,6 @@ package aatsvaeva.webpetproject.repository;
 import aatsvaeva.webpetproject.helper.rowmapper.UserRowMapper;
 import aatsvaeva.webpetproject.dto.UserDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.lang.Nullable;
