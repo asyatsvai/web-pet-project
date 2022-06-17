@@ -18,6 +18,7 @@ public class UserRowMapper implements RowMapper<UserDto> {
                 .position(rs.getInt("position"))
                 .name(rs.getString("name"))
                 .surname(rs.getString("surname"))
+                .age(rs.getInt("age"))
                 .department(rs.getString("department"))
                 .jobPosition(rs.getString("jobPosition"))
                 .startPeriod(rs.getDate("startPeriod").toLocalDate())

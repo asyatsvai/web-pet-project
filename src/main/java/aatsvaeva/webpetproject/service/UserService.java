@@ -23,7 +23,7 @@ public class UserService {
         var users = userRepository.getUsers(cursor, preparedLimit);
         var hasNext = users.size() > preparedLimit;
         var nextCursor = hasNext ? users.get(preparedLimit - 1).getPosition().toString() : null;
-        var items = userMapper.mapItems(users.subList(0, preparedLimit));
+        var items = hasNext ? userMapper.mapItems(users.subList(0, preparedLimit)) : userMapper.mapItems(users);
         return new GetUsersResponse(hasNext, nextCursor, items);
     }
 
