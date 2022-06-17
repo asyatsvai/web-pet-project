@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import java.util.List;
 
 @Mapper
-public abstract class UserMapper {
+public interface UserMapper {
 
     public abstract List<User> mapItems(List<UserDto> users);
 

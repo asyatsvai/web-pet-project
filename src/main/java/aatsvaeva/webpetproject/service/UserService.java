@@ -15,7 +15,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
-    @Value("${settings.operation.get-users.default-limit}")
+    @Value("${settings.operation.get-users.default-limit:2}")
     private Integer defaultLimit;
 
     public GetUsersResponse getUsers(@Nullable String cursor, @Nullable Integer limit) {

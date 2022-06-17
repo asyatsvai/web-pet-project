@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping(path = "/user")
 public class UserController {
 
     private final UserService userService;
 
-    @RequestMapping(path = "/user",
-            produces = { "application/json" },
+    @RequestMapping(produces = { "application/json" },
             method = RequestMethod.GET)
     @GetMapping
     public GetUsersResponse getUsers(@RequestParam(value = "cursor", required = false) String cursor,
@@ -25,7 +25,7 @@ public class UserController {
         return userService.getUsers(cursor, limit);
     }
 
-    @RequestMapping(path = "/user/department/{department}/min-age",
+    @RequestMapping(path = "/department/{department}/min-age",
             produces = { "application/json" },
             method = RequestMethod.GET)
     @GetMapping
